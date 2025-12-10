@@ -1,0 +1,448 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block user_role %}Administrator{% endblock %}
+{% block user_name %}{{ admin.name }}{% endblock %}
+{% block user_email %}{{ admin.email }}{% endblock %}
+{% block user_id %}{{ admin.id }}{% endblock %}
+{% block user_short_name %}Admin{% endblock %}
+{% block page_title %}Admin Dashboard{% endblock %}
+
+{% block sidebar_menu %}
+<li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="#"><i class="fas fa-users"></i> User Management</a></li>
+<li><a href="#"><i class="fas fa-briefcase"></i> Project Management</a></li>
+<li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Payments</a></li>
+<li><a href="#"><i class="fas fa-flag"></i> Reports & Issues</a></li>
+<li><a href="#"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+<li><a href="#"><i class="fas fa-cog"></i> System Settings</a></li>
+<li><a href="#"><i class="fas fa-shield-alt"></i> Security</a></li>
+<li><a href="#"><i class="fas fa-envelope"></i> Notifications</a></li>
+<li><a href="#"><i class="fas fa-database"></i> Database</a></li>
+{% endblock %}
+
+{% block content %}
+<!-- Stats Cards -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Total Users</h3>
+            <p class="stat-number">{{ stats.total_users }}</p>
+            <p class="stat-change">+124 this month</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Active Projects</h3>
+            <p class="stat-number">{{ stats.active_projects }}</p>
+            <p class="stat-change">₹4.2Cr value</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-rupee-sign"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Platform Revenue</h3>
+            <p class="stat-number">₹{{ stats.platform_revenue|int }}</p>
+            <p class="stat-change">+18% this month</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Pending Issues</h3>
+            <p class="stat-number">23</p>
+            <p class="stat-change">-5 this week</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+    <h3><i class="fas fa-bolt"></i> Admin Actions</h3>
+    <div class="actions-grid">
+        <button class="action-btn admin-action">
+            <i class="fas fa-user-shield"></i>
+            <span>Verify Users</span>
+        </button>
+        <button class="action-btn admin-action">
+            <i class="fas fa-ban"></i>
+            <span>Block User</span>
+        </button>
+        <button class="action-btn admin-action">
+            <i class="fas fa-chart-bar"></i>
+            <span>Generate Report</span>
+        </button>
+        <button class="action-btn admin-action">
+            <i class="fas fa-cog"></i>
+            <span>System Settings</span>
+        </button>
+        <button class="action-btn admin-action">
+            <i class="fas fa-bell"></i>
+            <span>Send Notification</span>
+        </button>
+        <button class="action-btn admin-action">
+            <i class="fas fa-database"></i>
+            <span>Backup Data</span>
+        </button>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- User Statistics -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-chart-pie"></i> User Distribution</h3>
+        </div>
+        <div class="card-body">
+            <div class="user-stats">
+                <div class="user-stat">
+                    <div class="stat-label">Customers</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" style="width: {{ (stats.total_customers/stats.total_users*100)|int }}%"></div>
+                    </div>
+                    <div class="stat-value">{{ stats.total_customers }} ({{ (stats.total_customers/stats.total_users*100)|int }}%)</div>
+                </div>
+                <div class="user-stat">
+                    <div class="stat-label">Contractors</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" style="width: {{ (stats.total_contractors/stats.total_users*100)|int }}%"></div>
+                    </div>
+                    <div class="stat-value">{{ stats.total_contractors }} ({{ (stats.total_contractors/stats.total_users*100)|int }}%)</div>
+                </div>
+                <div class="user-stat">
+                    <div class="stat-label">Labourers</div>
+                    <div class="stat-bar">
+                        <div class="bar-fill" style="width: {{ (stats.total_labourers/stats.total_users*100)|int }}%"></div>
+                    </div>
+                    <div class="stat-value">{{ stats.total_labourers }} ({{ (stats.total_labourers/stats.total_users*100)|int }}%)</div>
+                </div>
+            </div>
+            <div class="user-growth">
+                <h4>User Growth This Month</h4>
+                <p>+124 new users (+8.7%)</p>
+                <div class="growth-bar">
+                    <div class="growth-fill" style="width: 70%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Registrations -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-user-plus"></i> Recent Registrations</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="card-body">
+            <div class="registration-list">
+                <div class="registration-item">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4>Rahul Sharma</h4>
+                        <p>Customer | 2 hours ago</p>
+                        <span class="user-status pending">Verification Pending</span>
+                    </div>
+                    <button class="btn-sm verify-btn">Verify</button>
+                </div>
+
+                <div class="registration-item">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4>City Builders</h4>
+                        <p>Contractor | 5 hours ago</p>
+                        <span class="user-status verified">Verified</span>
+                    </div>
+                    <button class="btn-sm view-btn">View</button>
+                </div>
+
+                <div class="registration-item">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-hard-hat"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4>Mohan Singh</h4>
+                        <p>Labourer | 1 day ago</p>
+                        <span class="user-status pending">Documents Pending</span>
+                    </div>
+                    <button class="btn-sm verify-btn">Verify</button>
+                </div>
+
+                <div class="registration-item">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4>Priya Patel</h4>
+                        <p>Customer | 2 days ago</p>
+                        <span class="user-status verified">Verified</span>
+                    </div>
+                    <button class="btn-sm view-btn">View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Projects -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-briefcase"></i> Recent Projects</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="card-body">
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Villa Construction</h4>
+                        <p>Contractor: BuildRight Constructions</p>
+                        <p>Value: ₹45,00,000 | Commission: ₹2,25,000</p>
+                    </div>
+                    <div class="project-status active">Active</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Office Renovation</h4>
+                        <p>Contractor: Urban Developers</p>
+                        <p>Value: ₹18,00,000 | Commission: ₹90,000</p>
+                    </div>
+                    <div class="project-status completed">Completed</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Apartment Complex</h4>
+                        <p>Contractor: Mega Constructions</p>
+                        <p>Value: ₹2,50,00,000 | Commission: ₹12,50,000</p>
+                    </div>
+                    <div class="project-status active">Active</div>
+                </div>
+            </div>
+            <div class="project-stats">
+                <div class="project-stat">
+                    <span>Total Projects</span>
+                    <span>286</span>
+                </div>
+                <div class="project-stat">
+                    <span>Active</span>
+                    <span>142</span>
+                </div>
+                <div class="project-stat">
+                    <span>Completed</span>
+                    <span>144</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Issues -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-exclamation-circle"></i> Pending Issues</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="card-body">
+            <div class="issue-list">
+                <div class="issue-item high">
+                    <div class="issue-details">
+                        <h4>Payment Dispute</h4>
+                        <p>Project: Villa Construction</p>
+                        <span class="issue-time">Reported: 2 hours ago</span>
+                    </div>
+                    <button class="btn-sm resolve-btn">Resolve</button>
+                </div>
+
+                <div class="issue-item medium">
+                    <div class="issue-details">
+                        <h4>Profile Verification</h4>
+                        <p>User: Rajesh Kumar</p>
+                        <span class="issue-time">Pending: 1 day</span>
+                    </div>
+                    <button class="btn-sm review-btn">Review</button>
+                </div>
+
+                <div class="issue-item low">
+                    <div class="issue-details">
+                        <h4>Rating Complaint</h4>
+                        <p>Contractor: WaterFlow Solutions</p>
+                        <span class="issue-time">Reported: 2 days ago</span>
+                    </div>
+                    <button class="btn-sm review-btn">Review</button>
+                </div>
+            </div>
+            <div class="issue-stats">
+                <div class="issue-stat">
+                    <span>High Priority</span>
+                    <span>5</span>
+                </div>
+                <div class="issue-stat">
+                    <span>Medium</span>
+                    <span>8</span>
+                </div>
+                <div class="issue-stat">
+                    <span>Low</span>
+                    <span>10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Financial Overview -->
+<div class="dashboard-card full-width">
+    <div class="card-header">
+        <h3><i class="fas fa-chart-line"></i> Financial Overview</h3>
+        <a href="#" class="view-all">Detailed Report</a>
+    </div>
+    <div class="card-body">
+        <div class="financial-grid">
+            <div class="financial-item">
+                <h4>Revenue This Month</h4>
+                <p class="amount">₹{{ (stats.platform_revenue/12)|int }}</p>
+                <p class="change positive">+18% from last month</p>
+            </div>
+            <div class="financial-item">
+                <h4>Total Commission</h4>
+                <p class="amount">₹{{ stats.platform_revenue|int }}</p>
+                <p class="change positive">+25% YTD</p>
+            </div>
+            <div class="financial-item">
+                <h4>Pending Payments</h4>
+                <p class="amount">₹{{ (stats.platform_revenue/3)|int }}</p>
+                <p class="change">Due in 30 days</p>
+            </div>
+            <div class="financial-item">
+                <h4>Platform Fee Collected</h4>
+                <p class="amount">₹{{ (stats.platform_revenue * 0.7)|int }}</p>
+                <p class="change positive">+15% this quarter</p>
+            </div>
+        </div>
+        
+        <div class="payment-breakdown">
+            <h4>Payment Breakdown</h4>
+            <div class="breakdown-chart">
+                <div class="chart-item">
+                    <div class="chart-label">Customer Payments</div>
+                    <div class="chart-bar">
+                        <div class="bar-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="chart-value">60%</div>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-label">Contractor Fees</div>
+                    <div class="chart-bar">
+                        <div class="bar-fill" style="width: 25%"></div>
+                    </div>
+                    <div class="chart-value">25%</div>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-label">Labourer Payments</div>
+                    <div class="chart-bar">
+                        <div class="bar-fill" style="width: 15%"></div>
+                    </div>
+                    <div class="chart-value">15%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Status -->
+<div class="dashboard-card full-width">
+    <div class="card-header">
+        <h3><i class="fas fa-server"></i> System Status</h3>
+    </div>
+    <div class="card-body">
+        <div class="system-status">
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Database</h4>
+                    <p>All systems operational</p>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Server Load</h4>
+                    <p>45% - Optimal</p>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Security</h4>
+                    <p>No threats detected</p>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-backup"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Last Backup</h4>
+                    <p>Today, 02:00 AM</p>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Active Users</h4>
+                    <p>342 online now</p>
+                    <div class="status-indicator online"></div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="status-info">
+                    <h4>Notifications</h4>
+                    <p>23 pending</p>
+                    <div class="status-indicator warning"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="system-actions">
+            <button class="btn"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+            <button class="btn"><i class="fas fa-download"></i> Export Reports</button>
+            <button class="btn"><i class="fas fa-cog"></i> System Settings</button>
+            <button class="btn"><i class="fas fa-shield-alt"></i> Security Scan</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

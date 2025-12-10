@@ -1,0 +1,366 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}Contractor Dashboard{% endblock %}
+{% block user_role %}Contractor{% endblock %}
+{% block user_name %}{{ contractor.company_name }}{% endblock %}
+{% block user_email %}{{ contractor.email }}{% endblock %}
+{% block user_id %}{{ contractor.id }}{% endblock %}
+{% block user_short_name %}{{ contractor.company_name.split(' ')[0] }}{% endblock %}
+{% block page_title %}Contractor Dashboard{% endblock %}
+
+{% block sidebar_menu %}
+<li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="#"><i class="fas fa-user-tie"></i> Company Profile</a></li>
+<li><a href="#"><i class="fas fa-briefcase"></i> Active Projects</a></li>
+<li><a href="#"><i class="fas fa-search"></i> Find Projects</a></li>
+<li><a href="#"><i class="fas fa-users"></i> My Team</a></li>
+<li><a href="#"><i class="fas fa-search"></i> Hire Labourers</a></li>
+<li><a href="#"><i class="fas fa-comments"></i> Messages <span class="badge">8</span></a></li>
+<li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Payments</a></li>
+<li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+<li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+{% endblock %}
+
+{% block content %}
+<!-- Stats Cards -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Active Projects</h3>
+            <p class="stat-number">{{ stats.active_projects }}</p>
+            <p class="stat-change">₹{{ (stats.revenue/10)|int }} value</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Completed Projects</h3>
+            <p class="stat-number">{{ stats.completed_projects }}</p>
+            <p class="stat-change">98% satisfaction</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Team Members</h3>
+            <p class="stat-number">{{ stats.team_members }}</p>
+            <p class="stat-change">+2 this month</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">
+            <i class="fas fa-rupee-sign"></i>
+        </div>
+        <div class="stat-info">
+            <h3>Revenue</h3>
+            <p class="stat-number">₹{{ stats.revenue|int }}</p>
+            <p class="stat-change">+12% this year</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+    <div class="actions-grid">
+        <button class="action-btn">
+            <i class="fas fa-search"></i>
+            <span>Find Projects</span>
+        </button>
+        <button class="action-btn">
+            <i class="fas fa-users"></i>
+            <span>Hire Labourers</span>
+        </button>
+        <button class="action-btn">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add Team Member</span>
+        </button>
+        <button class="action-btn">
+            <i class="fas fa-file-invoice"></i>
+            <span>Create Invoice</span>
+        </button>
+        <button class="action-btn">
+            <i class="fas fa-chart-line"></i>
+            <span>View Reports</span>
+        </button>
+        <button class="action-btn">
+            <i class="fas fa-star"></i>
+            <span>Update Portfolio</span>
+        </button>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Active Projects -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-briefcase"></i> Active Projects</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="card-body">
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Villa Construction</h4>
+                        <p class="project-meta">Customer: Mr. Sharma</p>
+                        <p class="project-meta">Value: ₹45,00,000 | Timeline: 6 months</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                        </div>
+                        <p class="progress-text">40% Complete</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-sm"><i class="fas fa-eye"></i> View</button>
+                        <button class="btn-sm"><i class="fas fa-comment"></i> Chat</button>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Office Renovation</h4>
+                        <p class="project-meta">Customer: Tech Solutions Inc.</p>
+                        <p class="project-meta">Value: ₹18,00,000 | Timeline: 3 months</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <p class="progress-text">75% Complete</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-sm"><i class="fas fa-eye"></i> View</button>
+                        <button class="btn-sm"><i class="fas fa-comment"></i> Chat</button>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-info">
+                        <h4>Apartment Complex</h4>
+                        <p class="project-meta">Customer: Urban Developers</p>
+                        <p class="project-meta">Value: ₹2,50,00,000 | Timeline: 18 months</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                        </div>
+                        <p class="progress-text">15% Complete</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-sm"><i class="fas fa-eye"></i> View</button>
+                        <button class="btn-sm"><i class="fas fa-comment"></i> Chat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Management -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-users"></i> Team Management</h3>
+            <a href="#" class="view-all">Manage Team</a>
+        </div>
+        <div class="card-body">
+            <div class="team-stats">
+                <div class="team-stat">
+                    <span class="stat-label">Total Team</span>
+                    <span class="stat-value">{{ stats.team_members }}</span>
+                </div>
+                <div class="team-stat">
+                    <span class="stat-label">On Site</span>
+                    <span class="stat-value">{{ (stats.team_members * 0.8)|int }}</span>
+                </div>
+                <div class="team-stat">
+                    <span class="stat-label">Available</span>
+                    <span class="stat-value">{{ (stats.team_members * 0.2)|int }}</span>
+                </div>
+            </div>
+            
+            <div class="team-list">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user-hard-hat"></i>
+                    </div>
+                    <div class="member-info">
+                        <h4>Raju Kumar</h4>
+                        <p>Foreman</p>
+                        <span class="member-status active">On Site</span>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user-hard-hat"></i>
+                    </div>
+                    <div class="member-info">
+                        <h4>Mohan Singh</h4>
+                        <p>Mason</p>
+                        <span class="member-status active">On Site</span>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user-hard-hat"></i>
+                    </div>
+                    <div class="member-info">
+                        <h4>Sunil Patel</h4>
+                        <p>Electrician</p>
+                        <span class="member-status available">Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn full-width"><i class="fas fa-plus"></i> Add New Member</button>
+        </div>
+    </div>
+
+    <!-- Recent Bids -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-gavel"></i> Recent Bids</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="card-body">
+            <div class="bid-list">
+                <div class="bid-item">
+                    <div class="bid-info">
+                        <h4>Warehouse Construction</h4>
+                        <p>Budget: ₹75,00,000</p>
+                        <span class="bid-status submitted">Submitted: ₹72,00,000</span>
+                    </div>
+                    <div class="bid-actions">
+                        <span class="bid-days">3 days left</span>
+                    </div>
+                </div>
+
+                <div class="bid-item">
+                    <div class="bid-info">
+                        <h4>Hotel Renovation</h4>
+                        <p>Budget: ₹1,20,00,000</p>
+                        <span class="bid-status won">Won: ₹1,15,00,000</span>
+                    </div>
+                    <div class="bid-actions">
+                        <span class="bid-success"><i class="fas fa-trophy"></i> Won</span>
+                    </div>
+                </div>
+
+                <div class="bid-item">
+                    <div class="bid-info">
+                        <h4>School Building</h4>
+                        <p>Budget: ₹95,00,000</p>
+                        <span class="bid-status lost">Lost</span>
+                    </div>
+                    <div class="bid-actions">
+                        <span class="bid-lost"><i class="fas fa-times"></i> Lost</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn full-width"><i class="fas fa-search"></i> Find New Projects</button>
+        </div>
+    </div>
+
+    <!-- Financial Overview -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-chart-line"></i> Financial Overview</h3>
+            <a href="#" class="view-all">View Details</a>
+        </div>
+        <div class="card-body">
+            <div class="financial-stats">
+                <div class="financial-stat">
+                    <span class="stat-label">This Month</span>
+                    <span class="stat-value">₹{{ (stats.revenue/6)|int }}</span>
+                </div>
+                <div class="financial-stat">
+                    <span class="stat-label">Last Month</span>
+                    <span class="stat-value">₹{{ (stats.revenue/7)|int }}</span>
+                </div>
+                <div class="financial-stat">
+                    <span class="stat-label">YTD Revenue</span>
+                    <span class="stat-value">₹{{ stats.revenue|int }}</span>
+                </div>
+            </div>
+            
+            <div class="payment-status">
+                <div class="payment-item">
+                    <span class="payment-label">Pending Payments</span>
+                    <span class="payment-amount">₹{{ (stats.revenue/4)|int }}</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">Received This Month</span>
+                    <span class="payment-amount">₹{{ (stats.revenue/7)|int }}</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-label">Upcoming Payments</span>
+                    <span class="payment-amount">₹{{ (stats.revenue/6)|int }}</span>
+                </div>
+            </div>
+            
+            <button class="btn full-width"><i class="fas fa-file-invoice"></i> Generate Reports</button>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="dashboard-card full-width">
+    <div class="card-header">
+        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+    </div>
+    <div class="card-body">
+        <div class="activity-timeline">
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="activity-content">
+                    <p>Payment of ₹{{ (stats.revenue/10)|int }} received for Office Renovation project</p>
+                    <span class="activity-time">Today, 11:00 AM</span>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="activity-content">
+                    <p>Hired 2 new labourers for Villa Construction project</p>
+                    <span class="activity-time">Yesterday, 4:30 PM</span>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="activity-content">
+                    <p>Won bid for Hotel Renovation project (₹1,15,00,000)</p>
+                    <span class="activity-time">2 days ago</span>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="activity-content">
+                    <p>Received 5-star rating from Mr. Sharma for timely completion</p>
+                    <span class="activity-time">3 days ago</span>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="activity-content">
+                    <p>Started new project: Apartment Complex (18 months timeline)</p>
+                    <span class="activity-time">1 week ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

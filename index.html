@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaamConnect - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>KaamConnect</h1>
+            </div>
+            <ul class="nav-links"><li><a href="{{ url_for('index') }}" class="active">Home</a></li><li><a href="{{ url_for('customer_page') }}">Customer</a></li><li><a href="{{ url_for('contractor_page') }}">Contractor</a></li><li><a href="{{ url_for('labourer_page') }}">Labourer</a></li><li><a href="{{ url_for('admin_page') }}">Admin</a></li>{% if session.user_id %}<li><a href="{{ url_for('logout') }}">Logout</a></li>{% endif %}</ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to KaamConnect</h2>
+            <p>We connect hardworking labourers with reliable contractors and customers who need quality work done. Whether you're looking for a job, hiring help, or managing projects — KaamConnect makes it simple and fair for everyone.</p>
+            <div class="role-cards">
+                <div class="card">
+                    <h3>For Labourers</h3>
+                    <p>Find daily jobs, get paid on time, and build your reputation.</p>
+                    <a href="{{ url_for('labourer_page') }}">Join as Labourer</a>
+                </div>
+                <div class="card">
+                    <h3>For Contractors</h3>
+                    <p>Hire skilled workers, manage teams, and grow your business.</p>
+                    <a href="{{ url_for('contractor_page') }}">Join as Contractor</a>
+                </div>
+                <div class="card">
+                    <h3>For Customers</h3>
+                    <p>Get your work done by trusted professionals at fair prices.</p>
+                    <a href="{{ url_for('customer_page') }}">Hire Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <h2>5000+</h2>
+                <p>Labourers Registered</p>
+            </div>
+            <div class="stat">
+                <h2>1000+</h2>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat">
+                <h2>₹2Cr+</h2>
+                <p>Earnings Generated</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Everything You Need to <span class="highlight">Succeed</span></h2>
+            <p class="features-subtitle">
+                Our platform brings together cutting-edge technology with the realities of construction and labor work in India.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Smart Location Matching</h3>
+                    <p>GPS-powered job matching connects you with nearby opportunities instantly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Verified Profiles</h3>
+                    <p>Aadhaar verification and skill verification ensure trusted connections.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-lock"></i>
+                    <h3>Secure Payments</h3>
+                    <p>Escrow system with UPI integration keeps your money safe until job completion.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <h3>Digital Contracts</h3>
+                    <p>Auto-generated contracts with e-signature for every project engagement.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Real-time Communication</h3>
+                    <p>Chat, WhatsApp, Voice assistant, and SMS integration for seamless project coordination.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Rating & Reviews</h3>
+                    <p>Transparent feedback system builds trust across the platform.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>Progress Tracking</h3>
+                    <p>Live project updates and milestone tracking for complete visibility.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-people-group"></i>
+                    <h3>Team Management</h3>
+                    <p>Contractors can easily assemble and manage project teams.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <p><strong>KaamConnect</strong></p>
+                <p>Email: sagarmalideora@gmail.com</p>
+                <p>Phone: +91 9982760917</p>
+                <p>Address: Pune, India</p>
+            </div>
+            <div class="social-media">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://web.telegram.org/k/" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://www.instagram.com" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sagarmali_" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sagar-kumar-1314a6379/" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="quick-links">
+                <p>
+                    <a href="{{ url_for('index') }}">Home</a> | 
+                    <a href="{{ url_for('customer_page') }}">Customer</a> | 
+                    <a href="{{ url_for('contractor_page') }}">Contractor</a> | 
+                    <a href="{{ url_for('labourer_page') }}">Labourer</a> | 
+                    <a href="{{ url_for('admin_page') }}">Admin</a>
+                </p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 KaamConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

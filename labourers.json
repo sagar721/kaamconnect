@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "full_name": "aayush",
+    "phone": "0123456789",
+    "email": "aayush@gmail.com",
+    "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "created_at": "2025-12-03T18:56:42.039230",
+    "updated_at": "2025-12-03T18:56:42.039230",
+    "status": "active",
+    "rating": 0,
+    "skills": [],
+    "experience_years": 0,
+    "completed_jobs": 0,
+    "availability": true,
+    "daily_wage": 0
+  },
+  {
+    "id": 2,
+    "full_name": "sagar kumar",
+    "phone": "9982760917",
+    "email": "",
+    "password_hash": "462d4e685894f661edad8d1bf47c4450a729c84f8e1297714849711e0ab2363e",
+    "created_at": "2025-12-08T23:25:22.377623",
+    "updated_at": "2025-12-08T23:25:22.377641",
+    "status": "active",
+    "rating": 0,
+    "skills": [
+      "General Labour"
+    ],
+    "experience_years": 0,
+    "completed_jobs": 0,
+    "active_jobs": 0,
+    "availability": true,
+    "daily_wage": 800,
+    "total_earnings": 0
+  }
+]
